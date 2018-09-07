@@ -11,23 +11,20 @@ class App extends Component {
     showPersons: false
   };
 
-  switchNameHandler = newName => {
-    this.setState({
-      persons: [
-        { name: newName, age: 26 },
-        { name: 'XYZ', age: 27 },
-        { name: 'PQR', age: 27 }
-      ]
-    });
+  deletePersonHandler = personIndex => {
+    const persons = [...this.state.persons]; //  USING ... SO AS TO CREATE A NEW COPY THAN REFERENCING TO ORIGINAL ONE
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
   };
 
-  nameChangedHandler = event => {
+  nameChangedHandler = (event, index) => {
+    const person = { ...this.state.persons[index] };
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[index] = person;
+
     this.setState({
-      persons: [
-        { name: 'Nitin', age: 26 },
-        { name: event.target.value, age: 27 },
-        { name: 'PQR', age: 27 }
-      ]
+      persons
     });
   };
 
@@ -48,22 +45,17 @@ class App extends Component {
         </button>
         {this.state.showPersons ? (
           <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              click={this.switchNameHandler.bind(this, 'Niton')}
-              changed={this.nameChangedHandler}
-            >
-              My Hobby is xyz
-            </Person>
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-            />
+            {this.state.persons.map((person, index) => {
+              return (
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  click={this.deletePersonHandler.bind(this, index)}
+                  key={index}
+                  changed={event => this.nameChangedHandler(event, index)}
+                />
+              );
+            })}
           </div>
         ) : null}
       </div>
