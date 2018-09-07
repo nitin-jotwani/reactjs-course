@@ -1,16 +1,24 @@
-import React, { Component } from "react";
-import "./App.css";
-import Person from "./Person/Person";
+import React, { Component } from 'react';
+import './App.css';
+import Person from './Person/Person';
 class App extends Component {
+  state = {
+    persons: [
+      { name: 'Nitin', age: 25 },
+      { name: 'XYZ', age: 26 },
+      { name: 'PQR', age: 27 }
+    ]
+  };
   render() {
     return (
       <div className="App">
         <h1>Hi, This is my App created Using Create-react-app</h1>
-        <Person name="Nitin" age="25" />
-        <Person name="xyz" age="26">
+        <button>Switch Name</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>
           My Hobby is xyz
         </Person>
-        <Person name="pqr" age="27" />
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
       </div>
     );
     // THIS IS EXACT EQUIVALENT OF ABOVE JSX CODE. THIS IS WHAT IS DONE BEHIND THE SCENE INTERNALLY
