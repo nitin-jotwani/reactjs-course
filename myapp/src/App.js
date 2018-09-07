@@ -7,7 +7,8 @@ class App extends Component {
       { name: 'Nitin', age: 25 },
       { name: 'XYZ', age: 26 },
       { name: 'PQR', age: 27 }
-    ]
+    ],
+    showPersons: false
   };
 
   switchNameHandler = newName => {
@@ -29,32 +30,42 @@ class App extends Component {
       ]
     });
   };
+
+  togglePersonHandler = () => {
+    this.setState({
+      showPersons: !this.state.showPersons
+    });
+  };
   render() {
     return (
       <div className="App">
         <h1>Hi, This is my App created Using Create-react-app</h1>
         <button
-          onClick={this.switchNameHandler.bind(this, 'Nikki')}
-          style={{backgroundColor: 'yellow'}}
+          onClick={this.togglePersonHandler}
+          style={{ backgroundColor: 'yellow' }}
         >
           Switch Name
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Niton')}
-          changed={this.nameChangedHandler}
-        >
-          My Hobby is xyz
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+        {this.state.showPersons ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              click={this.switchNameHandler.bind(this, 'Niton')}
+              changed={this.nameChangedHandler}
+            >
+              My Hobby is xyz
+            </Person>
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+            />
+          </div>
+        ) : null}
       </div>
     );
     // THIS IS EXACT EQUIVALENT OF ABOVE JSX CODE. THIS IS WHAT IS DONE BEHIND THE SCENE INTERNALLY
