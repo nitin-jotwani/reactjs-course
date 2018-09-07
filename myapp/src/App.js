@@ -6,9 +6,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi, This is my App created Using Create-react-app</h1>
-        <Person />
-        <Person />
-        <Person />
+        <Person name="Nitin" age="25" />
+        <Person name="xyz" age="26">
+          My Hobby is xyz
+        </Person>
+        <Person name="pqr" age="27" />
       </div>
     );
     // THIS IS EXACT EQUIVALENT OF ABOVE JSX CODE. THIS IS WHAT IS DONE BEHIND THE SCENE INTERNALLY
