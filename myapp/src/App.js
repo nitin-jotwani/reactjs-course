@@ -33,7 +33,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi, This is my App created Using Create-react-app</h1>
-        <button onClick={this.switchNameHandler.bind(this, 'Nikki')}>
+        <button
+          onClick={this.switchNameHandler.bind(this, 'Nikki')}
+          style={{backgroundColor: 'yellow'}}
+        >
           Switch Name
         </button>
         <Person
