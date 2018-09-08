@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
   state = {
     persons: [
@@ -36,26 +37,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hi, This is my App created Using Create-react-app</h1>
-        <button
-          onClick={this.togglePersonHandler}
-          style={{ backgroundColor: 'yellow' }}
-        >
-          Switch Name
-        </button>
+        <Cockpit clicked={this.togglePersonHandler} />
         {this.state.showPersons ? (
           <div>
-            {this.state.persons.map((person, index) => {
-              return (
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  click={this.deletePersonHandler.bind(this, index)}
-                  key={index}
-                  changed={event => this.nameChangedHandler(event, index)}
-                />
-              );
-            })}
+            <Persons
+              persons={this.state.persons}
+              clicked={this.deletePersonHandler}
+              changed={this.nameChangedHandler}
+            />
           </div>
         ) : null}
       </div>
