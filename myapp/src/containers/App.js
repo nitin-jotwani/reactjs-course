@@ -34,6 +34,28 @@ class App extends Component {
       showPersons: !this.state.showPersons
     });
   };
+
+  componentWillMount() {
+    console.log('App.js comp will mount');
+  }
+
+  componentDidMount() {
+    console.log('App.js comp did mount');
+  }
+
+  shouldComponentUpdate(props, state) {
+    console.log('App.js should comp update', props, state);
+    return true; // SHOULD RETURN TRUE, ELSE NO EFFECT WILL HAPPEN
+  }
+
+  componentWillUpdate(props, state) {
+    console.log('App.js comp will update', props, state);
+  }
+
+  componentDidUpdate() {
+    console.log('App.js comp did update');
+  }
+
   render() {
     return (
       <div className="App">
