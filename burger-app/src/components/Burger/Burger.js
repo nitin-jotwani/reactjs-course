@@ -13,15 +13,15 @@ const burger = props => {
     }, []);
 
   return (
-      transformedIngredient.length === 0 ? (
+    <div className={classes.burger}>
+      <BurgerIngredient type="bread-top" />
+      {transformedIngredient.length === 0 ? (
         <p>Please Add Ingredients</p>
       ) : (
-        <div className={classes.burger}>
-          <BurgerIngredient type="bread-top" />
-          {transformedIngredient}
-          <BurgerIngredient type="bread-bottom" />
-        </div>
-      )
+        transformedIngredient
+      )}
+      <BurgerIngredient type="bread-bottom" />
+    </div>
   );
 };
 
